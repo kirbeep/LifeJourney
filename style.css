@@ -47,7 +47,7 @@ header {
     z-index: 1000;
     width: 100%;
     height: 65px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(57, 57, 57, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -355,6 +355,45 @@ header {
     background: linear-gradient(90deg,rgba(2, 66, 83, 1) 0%, 
     rgba(0, 185, 232, 1) 50%, 
     rgba(2, 66, 83, 1) 100%);
+    animation: move 5s linear infinite;
+}
+
+@keyframes move {
+    0% { 
+        background: 
+        linear-gradient(90deg,#024253 0%, 
+       #00b9e8 50%, 
+       #024253 100%);}
+    20% {
+        background: 
+        linear-gradient(90deg,#024253 0%, 
+       #024253 50%, 
+       #00b9e8 100%);
+    }
+    40% {
+        background: 
+        linear-gradient(90deg,#00b9e8 0%, 
+       #024253 50%, 
+       #024253 100%);
+    }
+    60% {
+        background: 
+        linear-gradient(90deg,#024253 0%, 
+       #00b9e8 50%, 
+       #024253 100%);
+    }
+    80% {
+        background: 
+        linear-gradient(90deg,#024253 0%, 
+       #024253 50%, 
+       #00b9e8 100%);
+    }
+    100% {
+        background: 
+        linear-gradient(90deg,#00b9e8 0%, 
+       #024253 50%, 
+       #024253 100%);
+    }
 }
 
 #section13 {
@@ -362,8 +401,8 @@ header {
     width: 100%; height: auto;
     padding: 80px 0 80px 0;
     background-color: transparent;
-    border: 1px solid red;
-    overflow: hidden;
+    border: 1px solid transparent;
+    overflow: visible;
 }
 
 .p1s3h1 {
@@ -402,7 +441,9 @@ header {
     width: 280px; height: 100px;
     background-color: #181818;
     border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.571);
+    box-shadow: 
+    3px 3px 3px rgba(0, 0, 0, 0.75),
+    -3px -3px 3px rgba(255, 255, 255, 0.08);
     border: 1px solid transparent;
     transition: 300ms all ease-in;
 }
@@ -460,47 +501,75 @@ header {
     margin-top: 90px;
     width: 86%; height: 300px;
     background-color: #181818;
-    border: 1px solid #000000;
     border-radius: 10px;
+    border: 2px solid #282828;
     justify-self: center;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.658);
+    box-shadow: 
+    inset 3px 3px 8px rgba(0, 0, 0, 0.75),
+    3px 3px 8px rgba(0, 0, 0, 0.75),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.08),
+    -3px -3px 8px rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: center;
     place-items: center;
     padding: 0 25px 0 25px;
-    overflow: hidden;
+    overflow: visible;
 }
 .p1s3sliderContainer {
-    width: 100%; height: 85%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    column-gap: 10px;
+    position: relative;
     overflow: hidden;
+    transition: all 0.5s ease;
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 50%,
+        transparent
+    );
 }
 .p1s3slider {
-    width: auto; height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 10px;
-    animation: slider 10s linear infinite;
+    animation: slide 10s linear infinite;
+    width: calc((350px + 0.6rem) * 8 * 2);
 }
-.p1s3slider img {
-    height: 100%; width: auto;
+.p1s3slider-item {
+    position: relative;
+    flex: 0 0 350px; height: 250px;
+    margin: 0 0.3rem;
     border-radius: 5px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+    overflow: hidden;
 }
-
-@keyframes slider {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-53%);
-  }
+#item8 {
+    background-position-y: -10px;
 }
-
-
+#item4 {
+    background-size: 130%;
+    background-position-y: -250px;
+}
+#item1 {
+    background-size: 130%;
+    background-position-x: -20px;
+}
+.p1s3sliderContainer:hover .p1s3slider-item {
+    filter: grayscale(0.8);
+}
+.p1s3sliderContainer .p1s3slider-item:hover {
+    filter: grayscale(0);
+}
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-1 * ((350px + 0.6rem) * 8))); /* Move by total width of 8 items with margins */
+    }
+}
+.p1s3sliderContainer:hover .p1s3slider {
+    animation-play-state: paused!important;
+}
 
 /*---------------------  SECTION 1.4  ---------------------*/
 
@@ -542,7 +611,6 @@ header {
     place-items: center;
     justify-content: center;
     grid-template-columns: repeat(auto-fit, auto);
-    
     border: 1px solid transparent;
 }
 .s4text1 {
@@ -597,7 +665,9 @@ header {
 }
 
 .p1s4img, .art3 {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.771);
+    box-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 1),
+    -3px -3px 6px rgba(255, 255, 255, 0.4);
     transition: 100ms all ease-in-out;
 }
 
@@ -670,7 +740,84 @@ header {
 }
 
 
+/*---------------------  SECTION 1.5  ---------------------*/
 
+.p1hr3 {
+    position: relative;
+    justify-self: center;
+    width: 70%; height: 3px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg,rgba(2, 66, 83, 1) 0%, 
+    rgba(0, 185, 232, 1) 50%, 
+    rgba(2, 66, 83, 1) 100%);
+}
+
+#section15 {
+    position: relative;
+    padding: 100px 0 80px 0;
+    width: 100%; height: auto;
+    background-color: transparent;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.p1s5h1 {
+    position: absolute;
+    justify-self: center;
+    color: #00B9E8;
+    font-family: 'Zen Dots', 'Sans Serif';
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 4px;
+}
+
+.p1s5container1 {
+    margin-top: 80px;
+    width: 100%; height: 480px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+.p1s5textContainer {
+    width: 31%; height: 100%;
+    margin-right: 30px;
+    padding: 15px 20px;
+    background-color: #181818;
+    border-radius: 15px;
+    border: 1px solid #2a2a2a;
+    box-shadow: -4px 5px 10px rgba(0, 0, 0, 0.6);
+}
+.p1s5textContainer p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: #a2a2a2;
+    text-align: justify;
+}
+.p1s5ImgContainer {
+    width: 25%; height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    place-items: center;
+}
+#p1s5ImgContainer1 {
+    margin-right: 10px;
+}
+
+.p1s5Img {
+    height: 49%; width: 100%;
+    border-radius: 10px;
+    border: 1px solid #007A99;
+    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    transition: 200ms all ease-in-out;
+}
+#p1s5Img1, #p1s5Img3 {
+    place-self: flex-start;
+}
+#p1s5Img2, #p1s5Img4 {
+    place-self: flex-end;
+}
 
 
 /*---------------------  SECTION 2.1  ---------------------*/
@@ -925,9 +1072,8 @@ header {
     width: 83%; height: 70%;
     background-color: #181818;
     border-radius: 15px;
-    display: block;
-    justify-items: start;
-    align-content: center;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 }
 #imgSliderContainer-border {
@@ -939,30 +1085,40 @@ header {
     animation: imgSliderEffect 1s ease-in-out infinite;
 }
 .sliderContainer {
-    width: auto; height: 80%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-    display: flex;
-    justify-content: start;
-    column-gap: 10px;
-    animation: scroll 5s linear infinite;
-}
-.imgSlider {
-    height: 100%; width: auto;
-    border-radius: 8px;
-    display: block;
-    flex-shrink: 0;
+    width: calc((350px + 0.6rem) * 5 * 2);
+    animation: slide2 10s linear infinite;
+}   
+.slide-item {
+    position: relative;
+    flex: 0 0 350px; height: 250px;
+    margin: 0 0.3rem;
+    border-radius: 5px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: all 0.5s ease;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-36%);
-  }
+.imgSliderContainer:hover .slide-item {
+    filter: grayscale(0.8);
+}
+.imgSliderContainer .slide-item:hover {
+    filter: grayscale(0);
+}
+
+.imgSliderContainer:hover .sliderContainer {
+    animation-play-state: paused!important;
+}
+
+@keyframes slide2 {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-1 * ((350px + 0.6rem) * 5))); /* Move by total width of 8 items with margins */
+    }
 }
 
 
@@ -1062,7 +1218,7 @@ header {
 }
 .p4imgContainer2 {
     height: 100%; width: 27%;
-    background-image: url(Images/kirby6.jpg);
+    background-image: url(Images/qcusfpic3.jpeg);
     background-size: cover;
     background-position: center;
     border-radius: 10px;
